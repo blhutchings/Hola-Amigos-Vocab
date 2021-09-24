@@ -101,11 +101,35 @@
     <script src="resources/audio_flash_card_0012.js"></script>
 
     <script type="text/javascript">
-        var lecture = [flash_card_det0, flash_card_det1, flash_card_det2, flash_card_det3, flash_card_det4, flash_card_det5, flash_card_det6,
+        const chapters = [flash_card_det0, flash_card_det1, flash_card_det2, flash_card_det3, flash_card_det4, flash_card_det5, flash_card_det6,
                         flash_card_det7, flash_card_det8, flash_card_det9, flash_card_det10, flash_card_det11, flash_card_det12];
 
-        
-        console.log(lecture[Math.floor(Math.random() * (lecture.length - 0))])
-    
+        var selected = [];
+
+        function loadChapter (chapterNumber, checkboxValue) {
+            if (checkboxValue == true) {
+                selected.push(chapters[chapterNumber]);
+            } else {
+                const index = selected.indexOf(chapters[chapterNumber]);
+                if (index > -1) {
+                    selected.splice(index, 1);
+                }
+            }
+            console.log(selected)
+        }
     </script>
+
+
+    <!-- On window load, load all preselected checkboxs into selected array-->
+    <script type="text/javascript">
+        const CHECKBOX_AMOUNT = 13; //AMount of chapter checkboxs
+        window.addEventListener('load', (event) => {
+            for (var checkbox = 0; checkbox < CHECKBOX_AMOUNT; checkbox++) {
+                if (document.getElementById("chapter" + checkbox).checked) {
+                    loadChapter(checkbox, true);
+                }
+            }
+        })
+    </script>
+    
 </html>
