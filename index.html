@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vocabulary</title>
+        <meta charset="utf-8">
+
+        <link rel="stylesheet" href="styles/card.css">
+        <link rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="styles/chapter_select.css">
+    </head>
+    <body>
+        <div class="default-card-side">
+            <input type="radio" id="spanish" name="side" value="front">
+            <label for="spanish">Spanish</label>
+
+            <input type="radio" id="english" name="side" value="back">
+            <label for="english">English</label><br>
+        </div>
+
+        <div class="chapter-select">
+            <input type="checkbox" id="chapter0" onclick="loadChapter(0, this.checked)">
+            <label for="chapter0">Chapter 0</label><br>
+
+            <input type="checkbox" id="chapter1" onclick="loadChapter(1, this.checked)">
+            <label for="chapter1">Chapter 1</label><br>
+
+            <input type="checkbox" id="chapter2" onclick="loadChapter(2, this.checked)">
+            <label for="chapter2">Chapter 2</label><br>
+
+            <input type="checkbox" id="chapter3" onclick="loadChapter(3, this.checked)">
+            <label for="chapter3">Chapter 3</label><br>
+            
+            <input type="checkbox" id="chapter4" onclick="loadChapter(4, this.checked)">
+            <label for="chapter4">Chapter 4</label><br>
+            
+            <input type="checkbox" id="chapter5" onclick="loadChapter(5, this.checked)">
+            <label for="chapter5">Chapter 5</label><br>
+            
+            <input type="checkbox" id="chapter6" onclick="loadChapter(6, this.checked)">
+            <label for="chapter6">Chapter 6</label><br>
+            
+            <input type="checkbox" id="chapter7" onclick="loadChapter(7, this.checked)">
+            <label for="chapter7">Chapter 7</label><br>
+            
+            <input type="checkbox" id="chapter8" onclick="loadChapter(8, this.checked)">
+            <label for="chapter8">Chapter 8</label><br>
+            
+            <input type="checkbox" id="chapter9" onclick="loadChapter(9, this.checked)">
+            <label for="chapter9">Chapter 9</label><br>
+            
+            <input type="checkbox" id="chapter10" onclick="loadChapter(10, this.checked)">
+            <label for="chapter10">Chapter 10</label><br>
+            
+            <input type="checkbox" id="chapter11" onclick="loadChapter(11, this.checked)">
+            <label for="chapter11">Chapter 11</label><br>
+            
+            <input type="checkbox" id="chapter12" onclick="loadChapter(12, this.checked)">
+            <label for="chapter12">Chapter 12</label><br>
+        </div>
+
+
+        <div class="scene">
+            <div class="card">
+                <div class="card-face card-face-front">
+                    <h3>Front</h3>
+                </div>
+                <div class="card-face card-face-back">
+                    <h3>Back</h3>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="button" id="back">Back</button>
+        <button type="button" class="button">Listen</button> 
+        <button type="button" class="button" id="next">Next</button>
+        
+    </body>
+
+
+    <!--Listener for flip card-->
+    <script type="text/javascript">
+        var card = document.querySelector('.card');
+        card.addEventListener('click', function() {
+            card.classList.toggle('is-flipped');
+        });
+    </script>
+    
+    <!-- var name: flash_card_det{index} -->
+    <script src="resources/audio_flash_card_0000.js"></script>
+    <script src="resources/audio_flash_card_0001.js"></script> 
+    <script src="resources/audio_flash_card_0002.js"></script>  
+    <script src="resources/audio_flash_card_0003.js"></script>
+    <script src="resources/audio_flash_card_0004.js"></script>
+    <script src="resources/audio_flash_card_0005.js"></script>
+    <script src="resources/audio_flash_card_0006.js"></script>
+    <script src="resources/audio_flash_card_0007.js"></script>
+    <script src="resources/audio_flash_card_0008.js"></script>
+    <script src="resources/audio_flash_card_0009.js"></script>
+    <script src="resources/audio_flash_card_0010.js"></script>
+    <script src="resources/audio_flash_card_0011.js"></script>
+    <script src="resources/audio_flash_card_0012.js"></script>
+
+    <script type="text/javascript">
+        var lecture = [flash_card_det0, flash_card_det1, flash_card_det2, flash_card_det3, flash_card_det4, flash_card_det5, flash_card_det6,
+                        flash_card_det7, flash_card_det8, flash_card_det9, flash_card_det10, flash_card_det11, flash_card_det12];
+
+        
+        console.log(lecture[Math.floor(Math.random() * (lecture.length - 0))])
+    
+    </script>
+</html>
