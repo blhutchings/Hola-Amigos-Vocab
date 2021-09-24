@@ -579,7 +579,7 @@ var flash_card_det1 = [
 },
 {
 "term": "mi",
-"definition":"(adj.) mi",
+"definition":"(adj.) my",
 "term_audio":"http://wowzahttp.cengage.com/nelson-videos/hed/spanish/audio/mi.mp3",
 "definition_audio":"",
 "term_audio_transcript":"Card 73 Term Audio transcript goes here...",
