@@ -18,47 +18,48 @@
         </div>
 
         <div class="chapter-select">
-            <input type="checkbox" id="vocab0" onclick="loadVocab(0, this.checked)">
+            <input type="checkbox" id="list0" onclick="selectVocabList(0, this.checked)">
             <label for="chapter0">Chapter 0</label><br>
 
-            <input type="checkbox" id="vocab1" onclick="loadVocab(1, this.checked)">
+            <input type="checkbox" id="list1" onclick="selectVocabList(1, this.checked)">
             <label for="chapter1">Chapter 1</label><br>
 
-            <input type="checkbox" id="vocab2" onclick="loadVocab(2, this.checked)">
+            <input type="checkbox" id="list2" onclick="selectVocabList(2, this.checked)">
             <label for="chapter2">Chapter 2</label><br>
 
-            <input type="checkbox" id="vocab3" onclick="loadVocab(3, this.checked)">
+            <input type="checkbox" id="list3" onclick="selectVocabList(3, this.checked)">
             <label for="chapter3">Chapter 3</label><br>
             
-            <input type="checkbox" id="vocab4" onclick="loadVocab(4, this.checked)">
+            <input type="checkbox" id="list4" onclick="selectVocabList(4, this.checked)">
             <label for="chapter4">Chapter 4</label><br>
             
-            <input type="checkbox" id="vocab5" onclick="loadVocab(5, this.checked)">
+            <input type="checkbox" id="list5" onclick="selectVocabList(5, this.checked)">
             <label for="chapter5">Chapter 5</label><br>
             
-            <input type="checkbox" id="vocab6" onclick="loadVocab(6, this.checked)">
+            <input type="checkbox" id="list6" onclick="selectVocabList(6, this.checked)">
             <label for="chapter6">Chapter 6</label><br>
             
-            <input type="checkbox" id="vocab7" onclick="loadVocab(7, this.checked)">
+            <input type="checkbox" id="list7" onclick="selectVocabList(7, this.checked)">
             <label for="chapter7">Chapter 7</label><br>
             
-            <input type="checkbox" id="vocab8" onclick="loadVocab(8, this.checked)">
+            <input type="checkbox" id="list8" onclick="selectVocabList(8, this.checked)">
             <label for="chapter8">Chapter 8</label><br>
             
-            <input type="checkbox" id="vocab9" onclick="loadVocab(9, this.checked)">
+            <input type="checkbox" id="list9" onclick="selectVocabList(9, this.checked)">
             <label for="chapter9">Chapter 9</label><br>
             
-            <input type="checkbox" id="vocab10" onclick="loadVocab(10, this.checked)">
+            <input type="checkbox" id="list10" onclick="selectVocabList(10, this.checked)">
             <label for="chapter10">Chapter 10</label><br>
             
-            <input type="checkbox" id="vocab11" onclick="loadVocab(11, this.checked)">
+            <input type="checkbox" id="list11" onclick="selectVocabList(11, this.checked)">
             <label for="chapter11">Chapter 11</label><br>
             
-            <input type="checkbox" id="vocab12" onclick="loadVocab(12, this.checked)">
+            <input type="checkbox" id="list12" onclick="selectVocabList(12, this.checked)">
             <label for="chapter12">Chapter 12</label><br>
         </div>
 
 
+        <p id="word-count">0/0</p>
         <div class="scene">
             <div class="card">
                 <div class="card-face card-face-front">
@@ -70,9 +71,9 @@
             </div>
         </div>
 
-        <button type="button" class="button" id="back">Back</button>
-        <button type="button" class="button">Listen</button> 
-        <button type="button" class="button" id="next">Next</button>
+        <button type="button" class="button" id="back" onclick="previousWord()">Back</button>
+        <button type="button" class="button" onclick="listen()">Listen</button> 
+        <button type="button" class="button" id="next" onclick="nextWord()">Next</button>
         
     </body>
 
@@ -101,33 +102,121 @@
     <script src="resources/audio_flash_card_0012.js"></script>
 
     <script type="text/javascript">
+
         const cardFront = document.getElementById("card-face-front-text");
         const cardBack = document.getElementById("card-face-back-text");
 
-        const VOCAB_LIST = 13; //Amount of vocab lists
-
-
         const vocabList = [flash_card_det0, flash_card_det1, flash_card_det2, flash_card_det3, flash_card_det4, flash_card_det5, flash_card_det6,
-                        flash_card_det7, flash_card_det8, flash_card_det9, flash_card_det10, flash_card_det11, flash_card_det12];
+                           flash_card_det7, flash_card_det8, flash_card_det9, flash_card_det10, flash_card_det11, flash_card_det12];
 
-        var selected = [];
 
-        function loadVocab (vocabListIndex, checkboxValue) {
-            if (checkboxValue == true) {
+        const VOCAB_LIST_AMOUNT = vocabList.length; //Amount of vocabulary lists
+
+
+        var selected = [];      //What lists are currently selected
+        var vocabQueue = [];    //A queue of all vocbaulary from the selected list
+
+        var currentIndex = 0; //What word are we on in the queue
+    
+
+
+        //Adds and removes selected lists
+        function selectVocabList (vocabListIndex, checkboxValue) {
+            if (checkboxValue == true) { //If being selected
                 selected.push(vocabList[vocabListIndex]);
-            } else {
+
+                //Add vocab list to queue
+                addSelectListToQueue(vocabList[vocabListIndex]);
+            } else { //If being unselected
+        
+                //Remove list from selected array
                 const index = selected.indexOf(vocabList[vocabListIndex]);
                 if (index > -1) {
                     selected.splice(index, 1);
                 }
+
+                //Make new queue
+                vocabQueue = generateVocabList() 
+            }
+            updateVisuals();
+        }
+
+
+        function addSelectListToQueue(selectedList) {
+            for (var vocabIndex = 0; vocabIndex < selectedList.length; vocabIndex++) {
+                vocabQueue.push(selectedList[vocabIndex]);
+            }
+            shuffleArray(vocabQueue);
+        }
+
+
+        function generateVocabList() {
+            var newVocabQueue = [];
+            for (var selectedIndex = 0; selectedIndex < selected.length; selectedIndex++) {
+                for (var vocabIndex = 0; vocabIndex < selected[selectedIndex].length; vocabIndex++) {
+                    newVocabQueue.push(selected[selectedIndex][vocabIndex]);
+                }
+            }
+            shuffleArray(newVocabQueue);
+            return newVocabQueue;
+        }
+
+        function gotoFirstWord() {
+            currentIndex = 0;
+            updateVisuals();
+        }
+
+        //Displays the next word from queue
+        function nextWord() {
+            if (currentIndex < vocabQueue.length) {
+                currentIndex++;
+                updateVisuals();
+            } else {
+                //Disable next
+                console.log("At last card, can not go forward")
             }
         }
 
+        //Displays the previous word from queue
+        function previousWord() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateVisuals();
+            } else {
+                //Disable back
+                console.log("At first card, can not go back")
+            }
+        }
+
+        //Display text to card
         function displayWord (frontText, backText) {
             cardFront.innerHTML = frontText;
             cardBack.innerHTML = backText;
         }
 
+        function listen() {
+            new Audio(vocabQueue[currentIndex].term_audio).play();
+        }
+
+        function shuffleArray (array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                const temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+
+        function updateVisuals() {
+            const entry = vocabQueue[currentIndex];
+            displayWord(entry.term, entry.definition);
+            updateWordProgress();
+        }
+
+        function updateWordProgress() {
+            const wordCount = document.getElementById("word-count");
+            wordCount.innerHTML = currentIndex+1 + " / " + vocabQueue.length
+        }
     </script>
 
 
@@ -136,19 +225,19 @@
 
         function init() {
             //Load any preselected vocab lists
-            for (var vocabList = 0; vocabList < VOCAB_LIST; vocabList++) {
+            for (var vocabList = 0; vocabList < VOCAB_LIST_AMOUNT; vocabList++) {
                 if (document.getElementById("list" + vocabList).checked) {
-                    loadChapter(vocabList, true);
+                    selectVocabList(vocabList, true);
                 }
             }
 
-            
-
-
-            window.addEventListener('load', (event) => {
-                    init();
-            })
+            gotoFirstWord();
         }
+
+                    
+        window.addEventListener('load', (event) => {
+            init();
+        })
     </script>
     
 </html>
