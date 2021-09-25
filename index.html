@@ -18,43 +18,43 @@
         </div>
 
         <div class="chapter-select">
-            <input type="checkbox" id="chapter0" onclick="loadChapter(0, this.checked)">
+            <input type="checkbox" id="vocab0" onclick="loadVocab(0, this.checked)">
             <label for="chapter0">Chapter 0</label><br>
 
-            <input type="checkbox" id="chapter1" onclick="loadChapter(1, this.checked)">
+            <input type="checkbox" id="vocab1" onclick="loadVocab(1, this.checked)">
             <label for="chapter1">Chapter 1</label><br>
 
-            <input type="checkbox" id="chapter2" onclick="loadChapter(2, this.checked)">
+            <input type="checkbox" id="vocab2" onclick="loadVocab(2, this.checked)">
             <label for="chapter2">Chapter 2</label><br>
 
-            <input type="checkbox" id="chapter3" onclick="loadChapter(3, this.checked)">
+            <input type="checkbox" id="vocab3" onclick="loadVocab(3, this.checked)">
             <label for="chapter3">Chapter 3</label><br>
             
-            <input type="checkbox" id="chapter4" onclick="loadChapter(4, this.checked)">
+            <input type="checkbox" id="vocab4" onclick="loadVocab(4, this.checked)">
             <label for="chapter4">Chapter 4</label><br>
             
-            <input type="checkbox" id="chapter5" onclick="loadChapter(5, this.checked)">
+            <input type="checkbox" id="vocab5" onclick="loadVocab(5, this.checked)">
             <label for="chapter5">Chapter 5</label><br>
             
-            <input type="checkbox" id="chapter6" onclick="loadChapter(6, this.checked)">
+            <input type="checkbox" id="vocab6" onclick="loadVocab(6, this.checked)">
             <label for="chapter6">Chapter 6</label><br>
             
-            <input type="checkbox" id="chapter7" onclick="loadChapter(7, this.checked)">
+            <input type="checkbox" id="vocab7" onclick="loadVocab(7, this.checked)">
             <label for="chapter7">Chapter 7</label><br>
             
-            <input type="checkbox" id="chapter8" onclick="loadChapter(8, this.checked)">
+            <input type="checkbox" id="vocab8" onclick="loadVocab(8, this.checked)">
             <label for="chapter8">Chapter 8</label><br>
             
-            <input type="checkbox" id="chapter9" onclick="loadChapter(9, this.checked)">
+            <input type="checkbox" id="vocab9" onclick="loadVocab(9, this.checked)">
             <label for="chapter9">Chapter 9</label><br>
             
-            <input type="checkbox" id="chapter10" onclick="loadChapter(10, this.checked)">
+            <input type="checkbox" id="vocab10" onclick="loadVocab(10, this.checked)">
             <label for="chapter10">Chapter 10</label><br>
             
-            <input type="checkbox" id="chapter11" onclick="loadChapter(11, this.checked)">
+            <input type="checkbox" id="vocab11" onclick="loadVocab(11, this.checked)">
             <label for="chapter11">Chapter 11</label><br>
             
-            <input type="checkbox" id="chapter12" onclick="loadChapter(12, this.checked)">
+            <input type="checkbox" id="vocab12" onclick="loadVocab(12, this.checked)">
             <label for="chapter12">Chapter 12</label><br>
         </div>
 
@@ -62,10 +62,10 @@
         <div class="scene">
             <div class="card">
                 <div class="card-face card-face-front">
-                    <h3>Front</h3>
+                    <h3 id="card-face-front-text">Front</h3>
                 </div>
                 <div class="card-face card-face-back">
-                    <h3>Back</h3>
+                    <h3 id="card-face-back-text">Back</h3>
                 </div>
             </div>
         </div>
@@ -101,35 +101,54 @@
     <script src="resources/audio_flash_card_0012.js"></script>
 
     <script type="text/javascript">
-        const chapters = [flash_card_det0, flash_card_det1, flash_card_det2, flash_card_det3, flash_card_det4, flash_card_det5, flash_card_det6,
+        const cardFront = document.getElementById("card-face-front-text");
+        const cardBack = document.getElementById("card-face-back-text");
+
+        const VOCAB_LIST = 13; //Amount of vocab lists
+
+
+        const vocabList = [flash_card_det0, flash_card_det1, flash_card_det2, flash_card_det3, flash_card_det4, flash_card_det5, flash_card_det6,
                         flash_card_det7, flash_card_det8, flash_card_det9, flash_card_det10, flash_card_det11, flash_card_det12];
 
         var selected = [];
 
-        function loadChapter (chapterNumber, checkboxValue) {
+        function loadVocab (vocabListIndex, checkboxValue) {
             if (checkboxValue == true) {
-                selected.push(chapters[chapterNumber]);
+                selected.push(vocabList[vocabListIndex]);
             } else {
-                const index = selected.indexOf(chapters[chapterNumber]);
+                const index = selected.indexOf(vocabList[vocabListIndex]);
                 if (index > -1) {
                     selected.splice(index, 1);
                 }
             }
-            console.log(selected)
         }
+
+        function displayWord (frontText, backText) {
+            cardFront.innerHTML = frontText;
+            cardBack.innerHTML = backText;
+        }
+
     </script>
 
 
     <!-- On window load, load all preselected checkboxs into selected array-->
     <script type="text/javascript">
-        const CHECKBOX_AMOUNT = 13; //AMount of chapter checkboxs
-        window.addEventListener('load', (event) => {
-            for (var checkbox = 0; checkbox < CHECKBOX_AMOUNT; checkbox++) {
-                if (document.getElementById("chapter" + checkbox).checked) {
-                    loadChapter(checkbox, true);
+
+        function init() {
+            //Load any preselected vocab lists
+            for (var vocabList = 0; vocabList < VOCAB_LIST; vocabList++) {
+                if (document.getElementById("list" + vocabList).checked) {
+                    loadChapter(vocabList, true);
                 }
             }
-        })
+
+            
+
+
+            window.addEventListener('load', (event) => {
+                    init();
+            })
+        }
     </script>
     
 </html>
