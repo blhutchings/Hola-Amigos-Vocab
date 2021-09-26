@@ -1,94 +1,116 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Vocabulary</title>
-        <meta charset="UTF-8">
-        <meta name="description" content="Spanish Vocabulary">
-        <meta name="author" content="Ben Hutchings">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <title>Vocabulary</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Spanish Vocabulary">
+    <meta name="author" content="Ben Hutchings">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" href="styles/card.css">
-        <link rel="stylesheet" href="styles/style.css">
-        <link rel="stylesheet" href="styles/chapter_select.css">
-    </head>
-    <body>
-        <div class="default-card-side">
-            <input type="radio" id="spanishFace" name="defaultFront" value="front" checked>
-            <label for="spanish">Spanish</label>
+    <!--Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        
+    <!--My CSS-->
+    <link rel="stylesheet" href="styles/card.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
 
-            <input type="radio" id="englishFace" name="defaultFront"  value="back">
-            <label for="english">English</label>
 
-            <input type="radio" id="randomFace" name="defaultFront"  value="random">
-            <label for="english">Random</label>
+
+    <!-- TODO -->
+    <div class="contrainer">
+        <div class="row">
+
         </div>
+        
+    </div>
 
-        <br>
 
-        <div class="chapter-select">
-            <input type="checkbox" id="list0" onclick="selectVocabList(0, this.checked)">
-            <label for="chapter0">Chapter 0</label><br>
 
-            <input type="checkbox" id="list1" onclick="selectVocabList(1, this.checked)">
-            <label for="chapter1">Chapter 1</label><br>
 
-            <input type="checkbox" id="list2" onclick="selectVocabList(2, this.checked)">
-            <label for="chapter2">Chapter 2</label><br>
 
-            <input type="checkbox" id="list3" onclick="selectVocabList(3, this.checked)">
-            <label for="chapter3">Chapter 3</label><br>
-            
-            <input type="checkbox" id="list4" onclick="selectVocabList(4, this.checked)">
-            <label for="chapter4">Chapter 4</label><br>
-            
-            <input type="checkbox" id="list5" onclick="selectVocabList(5, this.checked)">
-            <label for="chapter5">Chapter 5</label><br>
-            
-            <input type="checkbox" id="list6" onclick="selectVocabList(6, this.checked)">
-            <label for="chapter6">Chapter 6</label><br>
-            
-            <input type="checkbox" id="list7" onclick="selectVocabList(7, this.checked)">
-            <label for="chapter7">Chapter 7</label><br>
-            
-            <input type="checkbox" id="list8" onclick="selectVocabList(8, this.checked)">
-            <label for="chapter8">Chapter 8</label><br>
-            
-            <input type="checkbox" id="list9" onclick="selectVocabList(9, this.checked)">
-            <label for="chapter9">Chapter 9</label><br>
-            
-            <input type="checkbox" id="list10" onclick="selectVocabList(10, this.checked)">
-            <label for="chapter10">Chapter 10</label><br>
-            
-            <input type="checkbox" id="list11" onclick="selectVocabList(11, this.checked)">
-            <label for="chapter11">Chapter 11</label><br>
-            
-            <input type="checkbox" id="list12" onclick="selectVocabList(12, this.checked)">
-            <label for="chapter12">Chapter 12</label><br>
-        </div>
 
-        <div class="card-contents-wrapper">
-            <p id="word-count">0/0</p>
-            <div class="scene">
-                <div class="card">
-                    <div class="card-face card-face-front">
-                        <h3 id="card-face-front-text">Front</h3>
-                    </div>
-                    <div class="card-face card-face-back">
-                        <h3 id="card-face-back-text">Back</h3>
-                    </div>
+
+
+
+    <div class="container">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault0" checked>
+        <label class="form-check-label" for="flexRadioDefault0">Spanish</label>
+
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+        <label class="form-check-label" for="flexRadioDefault1">English</label> 
+
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+        <label class="form-check-label" for="flexRadioDefault2">Random</label> 
+    </div>    
+
+
+    <br>
+
+    <div class="container">
+        <input class="form-check-input list0" type="checkbox" value="" id="flexCheckDefault0" onclick="selectVocabList(0, this.checked)">
+        <label class="form-check-label" for="flexCheckDefault0">Chapter 0</label><br>
+
+        <input class="form-check-input list1" type="checkbox" value="" id="flexCheckDefault1" onclick="selectVocabList(1, this.checked)">
+        <label class="form-check-label" for="flexCheckDefault1">Chapter 1</label><br>
+
+        <input class="form-check-input list2" type="checkbox" value="" id="flexCheckDefault2" onclick="selectVocabList(2, this.checked)">
+        <label class="form-check-label" for="flexCheckDefault2">Chapter 2</label><br>
+
+        <input class="form-check-input list3" type="checkbox" value="" id="flexCheckDefault3" onclick="selectVocabList(3, this.checked)">
+        <label class="form-check-label" for="flexCheckDefault3">Chapter 3</label><br>
+
+        <input class="form-check-input list4" type="checkbox" value="" id="flexCheckDefault4" onclick="selectVocabList(4, this.checked)">
+        <label class="form-check-label" for="flexCheckDefault4">Chapter 4</label><br>
+
+        <input class="form-check-input list5" type="checkbox" value="" id="flexCheckDefault5" onclick="selectVocabList(5, this.checked)">
+        <label class="form-check-label" for="flexCheckDefault5">Chapter 5</label><br>
+
+        <input class="form-check-input list6" type="checkbox" value="" id="flexCheckDefault6" onclick="selectVocabList(6, this.checked)">
+        <label class="form-check-label" for="flexCheckDefault6">Chapter 6</label><br>
+
+        <input class="form-check-input list7" type="checkbox" value="" id="flexCheckDefault7" onclick="selectVocabList(7, this.checked)">
+        <label class="form-check-label" for="flexCheckDefault7">Chapter 7</label><br>
+
+        <input class="form-check-input list8" type="checkbox" value="" id="flexCheckDefault8" onclick="selectVocabList(8, this.checked)">
+        <label class="form-check-label" for="flexCheckDefault8">Chapter 8</label><br>
+        
+        <input class="form-check-input list9" type="checkbox" value="" id="flexCheckDefault9" onclick="selectVocabList(9, this.checked)">
+        <label class="form-check-label" for="flexCheckDefault9">Chapter 9</label><br>
+
+        <input class="form-check-input list10" type="checkbox" value="" id="flexCheckDefault10" onclick="selectVocabList(10, this.checked)">
+        <label class="form-check-label" for="flexCheckDefault10">Chapter 10</label><br>
+
+        <input class="form-check-input list11" type="checkbox" value="" id="flexCheckDefault11" onclick="selectVocabList(11, this.checked)">
+        <label class="form-check-label" for="flexCheckDefault11">Chapter 11</label><br>
+
+        <input class="form-check-input list12" type="checkbox" value="" id="flexCheckDefault12" onclick="selectVocabList(12, this.checked)">
+        <label class="form-check-label" for="flexCheckDefault12">Chapter 12</label><br>
+    </div>
+
+    <div class="container">
+        <p id="word-count">0/0</p>
+        
+        <div class="scene">
+            <div class="card-container">
+                <div class="card-face card-face-front">
+                    <h3 id="card-face-front-text"></h3>
+                </div>
+                <div class="card-face card-face-back">
+                    <h3 id="card-face-back-text"></h3>
                 </div>
             </div>
-
-            <button type="button" class="button" id="back" onclick="previousWord()">Back</button>
-            <button type="button" class="button" onclick="listen()">Listen</button> 
-            <button type="button" class="button" id="next" onclick="nextWord()">Next</button>
         </div>
-    </body>
 
+        <button type="button" class="btn btn-primary btn-lg" id="back" onclick="previousWord()">Back</button>
+        <button type="button" class="btn btn-primary btn-lg" onclick="listen()">Listen</button> 
+        <button type="button" class="btn btn-primary btn-lg" id="next" onclick="nextWord()">Next</button>
+    </div>
 
     <!--Listener for flip card-->
     <script type="text/javascript">
-        const card = document.querySelector('.card');
+        const card = document.querySelector('.card-container');
         card.addEventListener('click', function() {
             card.classList.toggle('is-flipped');
         });
@@ -114,19 +136,22 @@
 
     <!-- On window load, load all preselected checkboxs into selected array-->
     <script type="text/javascript">
-
         function init() {
             //Load any preselected vocab lists
             for (var vocabList = 0; vocabList < VOCAB_LIST_AMOUNT; vocabList++) {
-                if (document.getElementById("list" + vocabList).checked) {
+                if ((document.getElementsByClassName("list" + vocabList).item(0)).checked) {
                     selectVocabList(vocabList, true);
                 }
             }
             gotoFirstWord();
-        }          
+        }       
+
         window.addEventListener('load', (event) => {
             init();
         })
     </script>
     
+    <!--Bootstrap JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+</body>
 </html>
