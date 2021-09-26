@@ -2,7 +2,7 @@ const cardFront = document.getElementById("card-face-front-text");
 const cardBack = document.getElementById("card-face-back-text");
 
 const vocabList = [flash_card_det0, flash_card_det1, flash_card_det2, flash_card_det3, flash_card_det4, flash_card_det5, flash_card_det6,
-                   flash_card_det7, flash_card_det8, flash_card_det9, flash_card_det10, flash_card_det11, flash_card_det12];
+                   flash_card_det7, flash_card_det8, flash_card_det9, flash_card_det10, flash_card_det11, flash_card_det12, flash_card_det13];
 
 
 const VOCAB_LIST_AMOUNT = vocabList.length; //Amount of vocabulary lists
@@ -107,7 +107,9 @@ function shuffleArray (array) {
 
 function update() {
     //If audio is playing, stop
-    audio.pause();
+    if (!audio.paused && audio.duration > 0) {
+        audio.pause();
+    }
 
     //If card is flipped when updated, flip it back to front
     if (card.classList.contains("is-flipped")) {
@@ -118,7 +120,12 @@ function update() {
         const entry = vocabQueue[currentIndex];
         displayWord(entry.term, entry.definition);
         updateWordProgress(currentIndex+1,vocabQueue.length);
-        audio = new Audio (entry.term_audio);
+        if (entry.term_audio != "") {
+            audio = new Audio (entry.term_audio);
+        } else {
+            audio = new Audio();
+        }
+        
     } else {
         displayWord("","");
         updateWordProgress(0,0); 
