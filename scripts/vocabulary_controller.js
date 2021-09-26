@@ -33,7 +33,7 @@ function selectVocabList (vocabListIndex, checkboxValue) {
         //Make new queue
         vocabQueue = generateVocabList() 
     }
-    update();
+    gotoFirstWord();
 }
 
 
@@ -89,9 +89,6 @@ function displayWord (frontText, backText) {
     cardBack.innerHTML = "";
 
     setTimeout(() => {cardBack.innerHTML = backText;}, 300); //0.3ms, same as card flip
-
-
-
 }
 
 
