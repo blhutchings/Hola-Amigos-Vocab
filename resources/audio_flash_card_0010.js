@@ -1,4 +1,4 @@
-var flash_card_det10 = [
+const flash_card_det10 = [
 {
 "term": "abierto(-a)",
 "definition":"(adj.) open",

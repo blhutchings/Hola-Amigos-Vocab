@@ -1,4 +1,4 @@
-var flash_card_det5 = [
+const flash_card_det5 = [
 	
 {
 "term": "algo",

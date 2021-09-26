@@ -1,4 +1,4 @@
-var flash_card_det11 = [
+const flash_card_det11 = [
 {
 "term": "abordar",
 "definition":"(v.) to board (a plane)",

@@ -1,4 +1,4 @@
-var flash_card_det7 = [
+const flash_card_det7 = [
 {
 "term": "aburrirse",
 "definition":"(v.) to be bored",

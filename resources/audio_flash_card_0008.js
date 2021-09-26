@@ -1,4 +1,4 @@
-var flash_card_det8 = [
+const flash_card_det8 = [
     {
         "term": "a menudo",
         "definition":"(exp.) often",

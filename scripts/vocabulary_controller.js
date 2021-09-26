@@ -13,7 +13,7 @@ var vocabQueue = [];    //A queue of all vocbaulary from the selected list
 
 var currentIndex = 0; //What word are we on in the queue
     
-
+var audio = new Audio();
 
 //Adds and removes selected lists
 function selectVocabList (vocabListIndex, checkboxValue) {
@@ -33,7 +33,7 @@ function selectVocabList (vocabListIndex, checkboxValue) {
         //Make new queue
         vocabQueue = generateVocabList() 
     }
-    updateVisuals();
+    update();
 }
 
 
@@ -58,14 +58,14 @@ function generateVocabList() {
 
 function gotoFirstWord() {
     currentIndex = 0;
-    updateVisuals();
+    update();
 }
 
 //Displays the next word from queue
 function nextWord() {
     if (currentIndex < vocabQueue.length) {
         currentIndex++;
-        updateVisuals();
+        update();
     } else {
         //Disable next
         console.log("At last card, can not go forward")
@@ -76,7 +76,7 @@ function nextWord() {
 function previousWord() {
     if (currentIndex > 0) {
         currentIndex--;
-        updateVisuals();
+        update();
     } else {
         //Disable back
         console.log("At first card, can not go back")
@@ -86,11 +86,17 @@ function previousWord() {
 //Display text to card
 function displayWord (frontText, backText) {
     cardFront.innerHTML = frontText;
-    cardBack.innerHTML = backText;
+    cardBack.innerHTML = "";
+
+    setTimeout(() => {cardBack.innerHTML = backText;}, 300); //0.3ms, same as card flip
+
+
+
 }
 
+
 function listen() {
-    new Audio(vocabQueue[currentIndex].term_audio).play();
+    audio.play();
 }
 
 function shuffleArray (array) {
@@ -102,14 +108,24 @@ function shuffleArray (array) {
     }
 }
 
-function updateVisuals() {
+function update() {
+    //If audio is playing, stop
+    audio.pause();
+
+    //If card is flipped when updated, flip it back to front
+    if (card.classList.contains("is-flipped")) {
+        card.classList.toggle('is-flipped');
+    }
+
     if (vocabQueue.length > 0) {
         const entry = vocabQueue[currentIndex];
         displayWord(entry.term, entry.definition);
         updateWordProgress(currentIndex+1,vocabQueue.length);
+        audio = new Audio (entry.term_audio);
     } else {
         displayWord("","");
         updateWordProgress(0,0); 
+        audio = new Audio();
     }
 
 }

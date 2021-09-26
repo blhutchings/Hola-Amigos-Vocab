@@ -1,4 +1,4 @@
-var flash_card_det4 = [
+const flash_card_det4 = [
 	
 {
 "term": "¿A quién(es)...?",

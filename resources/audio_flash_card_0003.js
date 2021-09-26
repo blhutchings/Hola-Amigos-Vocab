@@ -1,4 +1,4 @@
-var flash_card_det3 = [
+const flash_card_det3 = [
 	
 {
 "term": "aparatos electrodomésticos",

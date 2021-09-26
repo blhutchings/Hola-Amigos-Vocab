@@ -1,4 +1,4 @@
-var flash_card_det12 = [
+const flash_card_det12 = [
 {
 "term": "acordarse (de) (o>ue)",
 "definition":"(v.) to remember",

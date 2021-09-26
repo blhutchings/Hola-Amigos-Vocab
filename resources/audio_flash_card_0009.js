@@ -1,4 +1,4 @@
-var flash_card_det9 = [
+const flash_card_det9 = [
 {
 "term": "andar descalzo(-a)",
 "definition":"(exp.) to go barefoot",

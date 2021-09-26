@@ -1,4 +1,4 @@
-var flash_card_det6 = [
+const flash_card_det6 = [
 	
 {
 "term": "a ver",
