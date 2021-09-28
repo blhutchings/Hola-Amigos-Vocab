@@ -6,7 +6,7 @@ const backButton = document.getElementById("beck");
 const listenButton = document.getElementById("listen");
 
 const vocabList = [flash_card_det0, flash_card_det1, flash_card_det2, flash_card_det3, flash_card_det4, flash_card_det5, flash_card_det6,
-                   flash_card_det7, flash_card_det8, flash_card_det9, flash_card_det10, flash_card_det11, flash_card_det12, flash_card_det13];
+                   flash_card_det7, flash_card_det8, flash_card_det9, flash_card_det10, flash_card_det11, flash_card_det12];
 
 
 const VOCAB_LIST_AMOUNT = vocabList.length; //Amount of vocabulary lists
