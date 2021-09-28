@@ -1,6 +1,10 @@
 const cardFront = document.getElementById("card-face-front-text");
 const cardBack = document.getElementById("card-face-back-text");
 
+const nextButton = document.getElementById("next");
+const backButton = document.getElementById("beck");
+const listenButton = document.getElementById("listen");
+
 const vocabList = [flash_card_det0, flash_card_det1, flash_card_det2, flash_card_det3, flash_card_det4, flash_card_det5, flash_card_det6,
                    flash_card_det7, flash_card_det8, flash_card_det9, flash_card_det10, flash_card_det11, flash_card_det12, flash_card_det13];
 
@@ -12,6 +16,8 @@ var selected = [];      //What lists are currently selected
 var vocabQueue = [];    //A queue of all vocbaulary from the selected list
 
 var currentIndex = 0; //What word are we on in the queue
+
+var languageMode = "spanish";
     
 var audio = new Audio();
 
@@ -83,12 +89,19 @@ function previousWord() {
     }
 }
 
+
+
+
 //Display text to card
 function displayWord (frontText, backText) {
     cardFront.innerHTML = frontText;
-    cardBack.innerHTML = "";
 
+    cardBack.innerHTML = "";
     setTimeout(() => {cardBack.innerHTML = backText;}, 300); //0.3ms, same as card flip
+}
+
+function setLanguageMode(languageMode) {
+    this.languageMode = languageMode;
 }
 
 
@@ -116,23 +129,50 @@ function update() {
         card.classList.toggle('is-flipped');
     }
 
-    if (vocabQueue.length > 0) {
+    if (vocabQueue.length > 0) { //If vocabulary is in queue
         const entry = vocabQueue[currentIndex];
-        displayWord(entry.term, entry.definition);
-        updateWordProgress(currentIndex+1,vocabQueue.length);
+        const term = entry.term;
+        const definition = entry.definition;
+
+        switch (languageMode) {
+            case "spanish":
+                displayWord(term, definition); //Spanish front card
+                break;
+            case "english":
+                displayWord(definition, term); //English front card
+                break;
+            case "random":
+                (Math.random() >= 0.5) ? displayWord(term,definition) : displayWord(definition,term);
+                break;
+            default:
+                displayWord(entry.term, entry.definition); //Spanish front card
+                break;
+        }
+
+        //Preload audio or set it to null
         if (entry.term_audio != "") {
             audio = new Audio (entry.term_audio);
         } else {
             audio = new Audio();
         }
+
+        //If no audio
+        if (!audio.duration > 0) {
+            
+        }
+
         
-    } else {
+        
+        updateWordProgress(currentIndex+1,vocabQueue.length);
+        
+    } else { //If vocabulary queue is empty
         displayWord("","");
         updateWordProgress(0,0); 
         audio = new Audio();
     }
 
 }
+
 
 function updateWordProgress(index, total) {
     const wordCount = document.getElementById("word-count");
