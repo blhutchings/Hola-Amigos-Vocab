@@ -177,6 +177,9 @@ function update() {
         updateWordProgress(currentIndex+1,vocabQueue.length);
         
     } else { //If vocabulary queue is empty
+        document.getElementById("listen").disabled = true;
+        document.getElementById("next").disabled = true;
+        document.getElementById("back").disabled = true;
         displayWord("","");
         updateWordProgress(0,0); 
         audio = new Audio();
