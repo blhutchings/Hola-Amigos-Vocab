@@ -1,5 +1,7 @@
 # Hola-Amigos-Vocab
 
+Note: No mobile support, I don't know how to do that. :)
+
 A webpage with all the vocabulary from chapter 0 to chapter 12 of the book "¡Hola, amigos! Fourth Canadian Edition"
 
 Features:
