@@ -69,13 +69,11 @@ function gotoFirstWord() {
 
 //Displays the next word from queue
 function nextWord() {
-    if (currentIndex < vocabQueue.length) {
+    if (currentIndex < vocabQueue.length-1) {
         currentIndex++;
+
         update();
-    } else {
-        //Disable next
-        console.log("At last card, can not go forward")
-    }
+    } 
 }
 
 //Displays the previous word from queue
@@ -84,8 +82,7 @@ function previousWord() {
         currentIndex--;
         update();
     } else {
-        //Disable back
-        console.log("At first card, can not go back")
+        //Disable next
     }
 }
 
@@ -129,6 +126,25 @@ function update() {
         card.classList.toggle('is-flipped');
     }
 
+    document.getElementById("listen").disabled = false;
+    document.getElementById("next").disabled = false;
+    document.getElementById("back").disabled = false;
+
+    //Disable next
+    if (currentIndex < vocabQueue.length-1) {
+        document.getElementById("next").disabled = false;
+    } else {
+        document.getElementById("next").disabled = true;
+    }
+
+    //Disable back
+    if (currentIndex > 0) {
+        document.getElementById("back").disabled = false;
+    } else {
+        document.getElementById("back").disabled = true;
+    }
+
+
     if (vocabQueue.length > 0) { //If vocabulary is in queue
         const entry = vocabQueue[currentIndex];
         const term = entry.term;
@@ -156,11 +172,6 @@ function update() {
             audio = new Audio();
         }
 
-        //If no audio
-        if (!audio.duration > 0) {
-            
-        }
-
         
         
         updateWordProgress(currentIndex+1,vocabQueue.length);
@@ -170,11 +181,23 @@ function update() {
         updateWordProgress(0,0); 
         audio = new Audio();
     }
-
 }
 
 
 function updateWordProgress(index, total) {
     const wordCount = document.getElementById("word-count");
     wordCount.innerHTML = index + " / " + total
+}
+
+
+function myBlur(button, delay, buttonUse) {
+
+    if (buttonUse == "audio") {
+        document.getElementById("listen"). disabled = true;
+        setTimeout(function(){button.blur()}, audio.duration * 1000);
+        setTimeout(function(){document. getElementById("listen"). disabled = false;}, audio.duration * 1000);
+    } else {
+        setTimeout(function(){button.blur()}, delay);
+    }
+
 }

@@ -104,13 +104,13 @@
 
                         <div class="row mt-3">                  
                             <div class="col text-center">
-                                <button type="button" class="btn btn-primary btn-lg" id="back" onclick="previousWord()">Back</button>
+                                <button type="button" class="btn btn-primary btn-lg" id="back" onclick="previousWord(); myBlur(this, 125, '' );">Back</button>
                             </div>
                             <div class="col text-center">
-                                <button type="button" class="btn btn-primary btn-lg" id="listen" onclick="listen()">Listen</button> 
+                                <button type="button" class="btn btn-primary btn-lg" id="listen" onclick="listen(); myBlur(this, 0, 'audio' );">Listen</button> 
                             </div>
                             <div class="col text-center">
-                                <button type="button" class="btn btn-primary btn-lg" id="next" onclick="nextWord()">Next</button>
+                                <button type="button" class="btn btn-primary btn-lg" id="next" onclick="nextWord(); myBlur(this, 125, '' );">Next</button>
                             </div>
                         </div>
                     </div>
