@@ -99,6 +99,7 @@ function displayWord (frontText, backText) {
 
 function setLanguageMode(languageMode) {
     this.languageMode = languageMode;
+    update();
 }
 
 
