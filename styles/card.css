@@ -22,7 +22,7 @@
     width: 100%;
     border-radius: 20px;
     border: solid #8398cb;
-    backface-visibility: hidden;
+    backface-visibility: hidden pull;
     justify-content: center;
     align-items: center;
     font-size: 200%;
