@@ -1,6 +1,7 @@
 # Hola-Amigos-Vocab
 
 Running at http://holaamigos.ca/
+
 A webpage with all the vocabulary from chapter 0 to chapter 12 of the book "¡Hola, amigos! Fourth Canadian Edition"
 
 Features:
